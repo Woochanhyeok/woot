@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import woo.woot.domain.Member;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
