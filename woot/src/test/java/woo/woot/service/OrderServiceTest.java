@@ -47,10 +47,13 @@ public class OrderServiceTest {
 
         Order getOrder = orderRepository.findOne(orderId);
 
+
         assertEquals("상품 주문시 상태는 ORDER", OrderStatus.ORDER, getOrder.getOrderStatus());
         assertEquals("주문한 상품 종류 수가 같아야 함",1, getOrder.getOrderItems().size());
         assertEquals("주문 가격은 가격 * 수량", 60000 * 3, getOrder.getTotalPrice());
         assertEquals("주문 수량만큼 재고 감소", 97, item.getStockQuantity());
+        assertEquals("멤버의 orders의 길이가 1이어야 함",1,member.getOrders().size());
+
     }
 
     @Test

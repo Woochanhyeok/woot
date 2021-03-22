@@ -3,6 +3,7 @@ package woo.woot.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import woo.woot.domain.Dtype;
 import woo.woot.domain.Item;
 import woo.woot.repository.ItemRepository;
 
@@ -26,4 +27,6 @@ public class ItemService {
     public Item findOne(Long itemId) {
         return itemRepository.findOne(itemId);
     }
+
+
 }

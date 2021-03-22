@@ -40,7 +40,16 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    //회원 전체 조회 (주문수로 내림차순 정렬)
-
+    //로그인 체크
+    public boolean loginCheck(String id, String password) {
+        List<Member> members = memberRepository.findByName(id);
+        for (Member member : members) {
+            if(member.getUsername() == id) {
+                if(member.getPassword() == password)
+                    return true;                    //로그인 성공
+            }
+        }
+        return false;                               //로그인 실패
+    }
 
 }
