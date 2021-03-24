@@ -27,6 +27,12 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
+            <a class="nav-link" th:text="${memberForm?.name}"></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" th:if="${memberForm != NULL}">님 안녕하세요.</a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="/">Home
               <span class="sr-only">(current)</span>
             </a>
@@ -37,7 +43,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/members/signin">Sign In</a>
+            <a class="nav-link" th:if="${memberForm == NULL}" href="/members/signin">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:if="${memberForm != NULL}" href="/members/signout">Sign Out</a>
           </li>
         </ul>
       </div>
@@ -51,7 +60,7 @@
 
 
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" style="margin-top:100px;">
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">

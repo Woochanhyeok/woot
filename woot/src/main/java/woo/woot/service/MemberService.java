@@ -40,12 +40,17 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    public String findNameByUsername(String username) {
+        Member member = memberRepository.findByName(username).get(0);
+        return member.getName();
+    }
+
     //로그인 체크
-    public boolean loginCheck(String id, String password) {
-        List<Member> members = memberRepository.findByName(id);
+    public boolean signInCheck(String username, String password) {
+        List<Member> members = memberRepository.findByName(username);
         for (Member member : members) {
-            if(member.getUsername() == id) {
-                if(member.getPassword() == password)
+            if(member.getUsername().equals(username)) {
+                if(member.getPassword().equals(password))
                     return true;                    //로그인 성공
             }
         }
