@@ -33,12 +33,12 @@ public class MemberController {
         log.info("signin : " + memberForm.getUsername() + " " + memberForm.getPassword());
         boolean isMember = memberService.signInCheck(memberForm.getUsername(), memberForm.getPassword());
         if(!isMember){
-            return "/members/signin";
+            return "members/signin";
 
         }
         memberForm.setName(memberService.findNameByUsername(memberForm.getUsername()));     //username으로 name 찾아서 넣어줌
         HttpSession session = req.getSession();
-        session.setAttribute("member", memberForm);
+        session.setAttribute("memberForm", memberForm);
 
         return "redirect:/";
     }
@@ -50,7 +50,7 @@ public class MemberController {
     }
 
     @PostMapping("/members/signup")
-    public String create(@Valid MemberForm memberForm, HttpServletRequest req, BindingResult result) {
+    public String create(@Valid MemberForm memberForm, BindingResult result, HttpServletRequest req) {
 
         if (result.hasErrors()) {
             return "members/signup";
@@ -68,18 +68,18 @@ public class MemberController {
 
         //세션
         session = req.getSession();
-        session.setAttribute("member", memberForm);
+        session.setAttribute("memberForm", memberForm);
 
         //세션 로그 출력
         log.info(session.getId());
-        log.info(((MemberForm) session.getAttribute("member")).getName());
+        log.info(((MemberForm) session.getAttribute("memberForm")).getName());
 
         return "redirect:/";
     }
 
     @GetMapping("/members/signout")
     public String signOut(HttpSession session) {
-        session.removeAttribute("member");
+        session.removeAttribute("memberForm");
 
         return "redirect:/";
     }

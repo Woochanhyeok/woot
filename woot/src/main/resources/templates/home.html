@@ -30,7 +30,10 @@
             <a class="nav-link" th:text="${memberForm?.name}"></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" th:if="${memberForm != NULL}">님 안녕하세요.</a>
+            <a class="nav-link" th:if="${memberForm != NULL}">님 안녕하세요 😀</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:if="${memberForm != NULL}"><br></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/">Home
@@ -38,8 +41,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Register Product
-
+            <a class="nav-link" th:if="${memberForm != NULL}" href="/items/register">Register Item</a>
             </a>
           </li>
           <li class="nav-item">
@@ -64,7 +66,7 @@
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">당신에게 어울리는 상품</h1>
+      <h1 class="display-3">추천 상푸우움</h1>
       <p class="lead">상품 이르으음</p>
       <a href="#" class="btn btn-primary btn-lg">구매하기</a>
     </header>
@@ -97,11 +99,11 @@
 
     <div class="row text-center">
 
-      <div class="col-lg-3 col-md-6 mb-4">
+      <div th:each="item : ${items}" class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <img class="card-img-top" th:src="@{${item.filePath}}" alt="">
           <div class="card-body">
-            <h4 class="card-title">Card title</h4>
+            <h4 th:text="${item.item_name}" class="card-title">Card title</h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
           </div>
           <div class="card-footer">
@@ -113,57 +115,18 @@
 
 
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">Card title</h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
-          </div>
-        </div>
-      </div>
+<!--      <div class="col-lg-3 col-md-6 mb-4">-->
+<!--        <div class="card h-100">-->
+<!--          <img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
+<!--          <div class="card-body">-->
+<!--            <h4 class="card-title">Card title</h4>-->
+<!--            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>-->
+<!--          </div>-->
+<!--          <div class="card-footer">-->
+<!--            <a href="#" class="btn btn-primary">Find Out More!</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
     </div>
     <!-- /.row -->

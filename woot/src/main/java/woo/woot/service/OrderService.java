@@ -26,6 +26,10 @@ public class OrderService {
         Member member = memberRepository.findOne(memberId);
         Item item = itemRepository.findOne(itemId);
 
+        //해당 아이템 order_count 증가
+        item.setOrder_count(item.getOrder_count()+count);
+        itemRepository.save(item);
+
         //주문 상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(),count);
 

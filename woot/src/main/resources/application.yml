@@ -5,6 +5,13 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 
+#  servlet:
+#    multipart:
+#      file-size-threshold: 1MB
+#      location: C:/Temp
+#      max-file-size: 100MB
+#      max-request-size: 100MB
+
   jpa:
     hibernate:
       #create를 바꿔줘야 테이블이 재생성되지 않음
