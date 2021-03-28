@@ -2,13 +2,15 @@ package woo.woot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import woo.woot.domain.Member;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class WootApplication {
+public class WootApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WootApplication.class, args);
 	}
+
+
 
 }

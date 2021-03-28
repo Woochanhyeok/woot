@@ -45,6 +45,10 @@ public class MemberService {
         return member.getName();
     }
 
+    public Member findByUsername(String username) {
+        return memberRepository.findByName(username).get(0);
+    }
+
     //로그인 체크
     public boolean signInCheck(String username, String password) {
         List<Member> members = memberRepository.findByName(username);

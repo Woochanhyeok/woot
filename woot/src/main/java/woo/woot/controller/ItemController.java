@@ -2,6 +2,7 @@ package woo.woot.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -31,7 +32,7 @@ public class ItemController {
         //세션에 로그인 정보가 있으면
         if (session.getAttribute("memberForm") != null) {
             //모델에 멤버폼 넣기
-            log.info("get : " + ((MemberForm) session.getAttribute("memberForm")).getName());
+            log.info("member name : " + ((MemberForm) session.getAttribute("memberForm")).getName());
             MemberForm memberForm = (MemberForm) session.getAttribute("memberForm");
             model.addAttribute("memberForm", memberForm);
 
@@ -51,7 +52,9 @@ public class ItemController {
         //상품 이미지 파일 저장
         MultipartFile files = itemForm.getFile();
         String fileName = System.currentTimeMillis()+files.getOriginalFilename();
-        String filePath = req.getSession().getServletContext().getRealPath("static/image/"+fileName);
+        String filePath = req.getSession().getServletContext().getRealPath("images/"+fileName);
+//        String filePath = req.getSession().getServletContext().getRealPath("../resources/static/"+fileName);
+//        String filePath = "C:\\Users\\user\\spring\\woot\\woot\\src\\main\\resources\\static\\images";
 
         File file = new File(filePath);
         files.transferTo(file);
@@ -62,7 +65,7 @@ public class ItemController {
         item.setPrice(itemForm.getPrice());
         item.setStockQuantity(itemForm.getStockQuantity());
         item.setDtype(itemForm.getDtype());
-        item.setFilePath(filePath);
+        item.setFilePath("/images/"+fileName);
 
         itemService.saveItem(item);
 
@@ -70,4 +73,5 @@ public class ItemController {
 
         return "redirect:/";
     }
+
 }

@@ -36,7 +36,11 @@ public class MemberController {
             return "members/signin";
 
         }
-        memberForm.setName(memberService.findNameByUsername(memberForm.getUsername()));     //username으로 name 찾아서 넣어줌
+        //로그인할 때 받아온 username으로 해당 멤버 찾아서 세션에 넣어줌
+        Member member = memberService.findByUsername(memberForm.getUsername());
+        memberForm.setName(member.getName());
+        memberForm.setSex(member.getSex());
+
         HttpSession session = req.getSession();
         session.setAttribute("memberForm", memberForm);
 

@@ -48,4 +48,7 @@ public class OrderService {
     }
 
     //검색
+    public Order findOne(Long orderId) {
+        return orderRepository.findOne(orderId);
+    }
 }
