@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileSystemView;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Controller
 @RequiredArgsConstructor
@@ -66,7 +67,7 @@ public class ItemController {
         item.setStockQuantity(itemForm.getStockQuantity());
         item.setDtype(itemForm.getDtype());
         item.setFilePath("/images/"+fileName);
-
+        item.setRegisterDate(LocalDateTime.now());
         itemService.saveItem(item);
 
         log.info("file path : " + filePath);

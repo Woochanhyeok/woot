@@ -66,31 +66,32 @@
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">추천 상푸우움</h1>
-      <p class="lead">상품 이르으음</p>
-      <a href="#" class="btn btn-primary btn-lg">구매하기</a>
+      <img src="/lookbook.jpg" width="1046px;"/>
+<!--      <h1 class="display-3">추천 상푸우움</h1>-->
+<!--      <p class="lead">상품 이르으음</p>-->
+<!--      <a href="#" class="btn btn-primary btn-lg">구매하기</a>-->
     </header>
 
     <!-- Page Features -->
     <div style="margin-bottom:10px;">
-      <form id="dtype" action="dtype" method="post" style="display:inline;">
-        <select id="loginType" name="loginType" onchange="formChange(this.form)">
-          <option value="all">전체</option>
-          <option value="TOP">TOP</option>
-          <option value="PANTS">PANTS</option>
-          <option value="OUTER">OUTER</option>
-          <option value="HEADWEAR">HEADWEAR</option>
-          <option value="SHOES">SHOES</option>
+      <form id="dtype" action="/dtype" method="post" style="display:inline;">
+        <select id="dtype1" name="dtype" onchange="formChange(this.form)">
+          <option th:selected="${dtype=='ALL'}" value="ALL">전체</option>
+          <option th:selected="${dtype=='TOP'}" value="TOP">TOP</option>
+          <option th:selected="${dtype=='PANTS'}" value="PANTS">PANTS</option>
+          <option th:selected="${dtype=='OUTER'}" value="OUTER">OUTER</option>
+          <option th:selected="${dtype=='HEADWEAR'}" value="HEADWEAR">HEADWEAR</option>
+          <option th:selected="${dtype=='SHOES'}" value="SHOES">SHOES</option>
         </select>
-      </form>
+<!--      </form>-->
 
-      <form id="sort" action="sort" method="post" style="display:inline; margin-bottom:10px;">
-        <select id="loginType1" name="loginType">
-          <option value="new">최신순</option>
-          <option value="hot">인기순</option>
-          <option value="review">리뷰 많은순</option>
-          <option value="low">낮은 가격순</option>
-          <option value="high">높은 가격순</option>
+<!--      <form id="sort" action="sort" method="post" style="display:inline; margin-bottom:10px;">-->
+        <select id="sort1" name="sort" onchange="formChange(this.form)">
+          <option th:selected="${sort=='new'}" value="new">최신순</option>
+          <option th:selected="${sort=='hot'}" value="hot">인기순</option>                            #ordercount로 정렬
+          <option th:selected="${sort=='review'}" value="review">리뷰 많은순</option>                     #reviews.size()로 정렬
+          <option th:selected="${sort=='low'}" value="low">낮은 가격순</option>                        #price 오름차순
+          <option th:selected="${sort=='high'}" value="high">높은 가격순</option>                       #price 내림차순
         </select>
       </form>
     </div>
@@ -108,24 +109,11 @@
             <p class="card-text" th:text="${item.dtype}"></p>
           </div>
           <div class="card-footer">
-            <a th:href="@{/items/{id}/order (id=${item.item_id})}" class="btn btn-primary">구매하러 가기</a>
+            <a th:href="@{/items/{id}/order (id=${item.item_id})}" th:if="${memberForm != NULL}" class="btn btn-primary">구매하러 가기</a>
           </div>
         </div>
       </div>
 
-
-<!--      <div class="col-lg-3 col-md-6 mb-4">-->
-<!--        <div class="card h-100">-->
-<!--          <img class="card-img-top" src="http://placehold.it/500x325" alt="">-->
-<!--          <div class="card-body">-->
-<!--            <h4 class="card-title">Card title</h4>-->
-<!--            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>-->
-<!--          </div>-->
-<!--          <div class="card-footer">-->
-<!--            <a href="#" class="btn btn-primary">Find Out More!</a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
 
     </div>
     <!-- /.row -->

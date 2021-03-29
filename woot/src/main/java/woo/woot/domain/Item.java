@@ -5,6 +5,7 @@ import lombok.Setter;
 import woo.woot.exception.NotEnoughStockException;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class Item {
     private int order_count;
 
     private String filePath;
+
+    private LocalDateTime registerDate;
 
     @OneToMany(mappedBy = "item")
     private List<Review> reviews = new ArrayList<>();

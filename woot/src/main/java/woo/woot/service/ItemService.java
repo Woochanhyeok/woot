@@ -28,5 +28,7 @@ public class ItemService {
         return itemRepository.findOne(itemId);
     }
 
+    public List<Item> findItemsByDtype(Dtype dtype) { return itemRepository.findItemsByDtype(dtype); }
+
 
 }
